@@ -8,6 +8,14 @@ This extension visualizes the mutants and summary of mutation results for Java p
 - Evidence of Testing and Debugging: See the Gitlab CI/CD pipelines and unit tests.
 - Video Demo: https://drive.google.com/open?id=1lwWx-G0N8ysgpHw-XXGurMBMIKsV34Lo
 
+## Authors
+
+- [Anthony Adkins](https://github.com/tonymadkins)
+- [Daisy Isibor](https://github.com/isibord)
+- [Jaipreet Singh](https://github.com/jaipreet-s)
+- [Kurtis Eveleigh](https://github.com/keveleigh)
+- [Toby Liu](https://github.com/ybot1122)
+
 ## Getting Started
 
 After downloading the .vsix installer from the repo, you can install it by running
