@@ -1,0 +1,122 @@
+{
+	"name": "mutation-viz",
+	"publisher": "cse590",
+	"displayName": "mutation-viz",
+	"description": "This extension visualizes the mutants and summary of mutation results for java projects. The mutation frameworks supported are PIT and Major. This project can be extended to support other frameworks.",
+	"repository": {
+		"type": "git",
+		"url": "https://gitlab.cs.washington.edu/mutation-testing-visualization/mutation-viz/tree/master"
+	},
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.33.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.mutate",
+		"onCommand:extension.visualize",
+		"onLanguage:java"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"configuration": {
+			"title": "Mutation-viz configuration",
+			"properties": {
+				"mutation.outputFolder": {
+					"type": "string",
+					"default": "mutationReports",
+					"description": "Specifies the folder containing the mutation framework's XML output."
+				},
+				"mutation.outputFilename": {
+					"type": "string",
+					"default": "mutations.xml",
+					"description": "Specifies the name of the file (without folder information) containing the mutation framework's XML output."
+				}
+			}
+		},
+		"commands": [
+			{
+				"command": "extension.mutate",
+				"title": "Mutate"
+			},
+			{
+				"command": "extension.visualize",
+				"title": "Visualize Mutation"
+			}
+		],
+		"menus": {
+			"editor/title/context": [
+				{
+					"when": "resourceLangId == java",
+					"command": "extension.mutate"
+				},
+				{
+					"when": "resourceLangId == java",
+					"command": "extension.visualize"
+				}
+			],
+			"explorer/context": [
+				{
+					"when": "resourceLangId == java",
+					"command": "extension.mutate"
+				},
+				{
+					"when": "resourceLangId == java",
+					"command": "extension.visualize"
+				}
+			]
+		},
+		"colors": [
+			{
+				"id": "mutation.killedBackground",
+				"description": "Background decoration color for killed mutations",
+				"defaults": {
+					"dark": "#00ff3755",
+					"light": "#00ff1555",
+					"highContrast": "#fffb0055"
+				}
+			},
+			{
+				"id": "mutation.aliveBackground",
+				"description": "Background decoration color for alive mutations",
+				"defaults": {
+					"dark": "#ff0000",
+					"light": "#ff0000",
+					"highContrast": "#ff0000"
+				}
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && CODE_TESTS_WORKSPACE=harness-ant node ./node_modules/vscode/bin/test",
+		"test:unit": "jest",
+		"lint": "node node_modules/tslint/ -c tslint.json 'src/**/*.ts'"
+	},
+	"devDependencies": {
+		"@types/mocha": "^5.2.6",
+		"@types/node": "^10.12.21",
+		"@types/sinon": "^7.0.11",
+		"@types/papaparse": "^4.5.9",
+		"@types/xml-js": "^1.0.0",
+		"jest": "^24.7.1",
+		"ts-jest": "^24.0.2",
+		"tslint": "^5.12.1",
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28",
+		"sinon": "^7.3.2"
+	},
+	"dependencies": {
+		"@microsoft/tsdoc": "^0.12.9",
+		"has-flag": "^4.0.0",
+		"maven": "^4.5.0",
+		"papaparse": "^4.6.3",
+		"supports-color": "^6.1.0",
+		"xml-js": "^1.6.11"
+	}
+}

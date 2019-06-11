@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="triangle">
+
+    <property name="classOutputDir" value="build" />
+
+    <target name="clean">
+
+        <delete dir="${classOutputDir}" />
+
+    </target>
+
+
+
+    <target name="compile" depends="clean">
+
+        <mkdir dir="${classOutputDir}/classes" />
+
+        <!-- Essential that line numbers and filenames are included in order for PIT to work -->
+        <javac srcdir="src" includeantruntime="false" debug="true" debuglevel="source,lines" destdir="${classOutputDir}/classes" />
+
+    </target>
+
+
+       <!-- classpath for compiling and testing the code. Note it does not include pitest and it's dependencies -->
+    <path id="test.path">
+
+        <pathelement location="${classOutputDir}/classes" />
+
+        <pathelement location="${classOutputDir}/test-classes" />
+        <pathelement location="lib/junit-4.11.jar" />
+
+    </path>
+
+    <target name="test" depends="compile">
+
+        <mkdir dir="${classOutputDir}/test-result" />
+
+        <mkdir dir="${classOutputDir}/test-classes" />
+
+
+
+        <javac includeantruntime="false" srcdir="test" destdir="${classOutputDir}/test-classes">
+
+            <classpath refid="test.path" />
+
+        </javac>
+
+
+
+        <junit>
+
+            <classpath refid="test.path" />
+
+            <batchtest todir="${classOutputDir}/test-result">
+
+                <!-- set test classes -->
+
+                <fileset dir="test">
+
+                    <include name="**/*Test.java" />
+
+                </fileset>
+
+                <formatter type="xml" />
+
+            </batchtest>
+
+        </junit>
+
+
+
+        <junitreport todir="${classOutputDir}/test-result">
+
+            <fileset dir="${classOutputDir}/test-result">
+
+                <include name="TEST-*.xml" />
+
+            </fileset>
+
+            <report format="frames" todir="${classOutputDir}/test-result/report" />
+
+        </junitreport>
+
+    </target>
+    
+    <!-- classpath for pitest and any plugins -->
+    <path id="pitest.path">
+        <!-- must currently include the test library on the tool classpath. this will be fixed in a future version-->
+           <pathelement location="lib/junit-4.11.jar" />
+        <!-- xstream and xmlpull currently required on classpath. Requirement may be removed in future version-->
+        <pathelement location="lib/xstream-1.4.8.jar" />
+        <pathelement location="lib/xmlpull-1.1.3.1.jar" />
+        <pathelement location="lib/pitest-1.4.7.jar" />
+        <pathelement location="lib/pitest-entry-1.4.7.jar" />
+        <pathelement location="lib/pitest-ant-1.4.7.jar" />
+    </path>
+
+    <taskdef name="pitest" classname="org.pitest.ant.PitestTask" classpathref="pitest.path" />
+
+    <!-- run pitest. note that the filters for tests and classes refer to package/class names, not source file named -->
+    <target name="mutate" depends="test">
+        <path id="mutation.path">
+            <path refid="pitest.path"/>
+            <path refid="test.path"/>
+        </path>
+        <pitest
+            classPath="mutation.path"
+            historyInputLocation="mutationReports/history"
+            historyOutputLocation="mutationReports/history"
+            mutators="ALL"
+            outputFormats="xml"
+            pitClasspath="pitest.path"
+            reportDir="mutationReports"
+            sourceDir="src"
+            targetClasses="edu.ncsu.csc326.coffeemaker.*"
+            targetTests="edu.ncsu.csc326.coffeemaker.*"
+            testPlugin="junit"
+            timestampedReports="false"
+            threads="2"
+            verbose="true"/>
+    </target>
+</project>

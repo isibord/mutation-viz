@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mutations>
+    <mutation detected='true' status='KILLED'>
+    <sourceFile>MyClass.java</sourceFile>
+    <mutatedClass>pitexample.MyClass</mutatedClass>
+    <mutatedMethod>myMethod</mutatedMethod>
+    <methodDescription>(IZ)Z</methodDescription>
+    <lineNumber>6</lineNumber>
+    <mutator>org.pitest.mutationtest.engine.gregor.mutators.ConditionalsBoundaryMutator</mutator>
+    <index>4</index>
+    <killingTest>pitexample.MyClassTest.testMe(pitexample.MyClassTest)</killingTest>
+    <description>changed conditional boundary</description>
+</mutation>
+<mutation detected='true' status='KILLED'><sourceFile>MyClass.java</sourceFile><mutatedClass>pitexample.MyClass</mutatedClass><mutatedMethod>myMethod</mutatedMethod><methodDescription>(IZ)Z</methodDescription><lineNumber>6</lineNumber><mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator><index>4</index><killingTest>pitexample.MyClassTest.testMe(pitexample.MyClassTest)</killingTest><description>negated conditional</description></mutation>
+<mutation detected='true' status='KILLED'><sourceFile>MyClass.java</sourceFile><mutatedClass>pitexample.MyClass</mutatedClass><mutatedMethod>myMethod</mutatedMethod><methodDescription>(IZ)Z</methodDescription><lineNumber>9</lineNumber><mutator>org.pitest.mutationtest.engine.gregor.mutators.NegateConditionalsMutator</mutator><index>12</index><killingTest>pitexample.MyClassTest.testMe(pitexample.MyClassTest)</killingTest><description>negated conditional</description></mutation>
+<mutation detected='true' status='KILLED'><sourceFile>MyClass.java</sourceFile><mutatedClass>pitexample.MyClass</mutatedClass><mutatedMethod>myMethod</mutatedMethod><methodDescription>(IZ)Z</methodDescription><lineNumber>7</lineNumber><mutator>org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator</mutator><index>8</index><killingTest>pitexample.MyClassTest.testMe(pitexample.MyClassTest)</killingTest><description>replaced return of integer sized value with (x == 0 ? 1 : 0)</description></mutation>
+<mutation detected='false' status='NO_COVERAGE'><sourceFile>MyClass.java</sourceFile><mutatedClass>pitexample.MyClass</mutatedClass><mutatedMethod>myMethod</mutatedMethod><methodDescription>(IZ)Z</methodDescription><lineNumber>10</lineNumber><mutator>org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator</mutator><index>16</index><killingTest/><description>replaced return of integer sized value with (x == 0 ? 1 : 0)</description></mutation>
+<mutation detected='true' status='KILLED'><sourceFile>MyClass.java</sourceFile><mutatedClass>pitexample.MyClass</mutatedClass><mutatedMethod>myMethod</mutatedMethod><methodDescription>(IZ)Z</methodDescription><lineNumber>12</lineNumber><mutator>org.pitest.mutationtest.engine.gregor.mutators.ReturnValsMutator</mutator><index>20</index><killingTest>pitexample.MyClassTest.testMe(pitexample.MyClassTest)</killingTest><description>replaced return of integer sized value with (x == 0 ? 1 : 0)</description></mutation>
+</mutations>
