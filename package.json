@@ -115,7 +115,7 @@
 		"@microsoft/tsdoc": "^0.12.9",
 		"has-flag": "^4.0.0",
 		"maven": "^4.5.0",
-		"papaparse": "^4.6.3",
+		"papaparse": "^5.2.0",
 		"supports-color": "^6.1.0",
 		"xml-js": "^1.6.11"
 	}
